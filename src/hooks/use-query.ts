@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Coordinates } from "../types/weather";
-import { getWeather } from "../services/get-weather";
-import { getLocation } from "../services/get-location";
+import type { Coordinates } from "@/types/weather";
+import { getWeather } from "@/services/get-weather";
+import { getLocation } from "@/services/get-location";
 
 const QueryKeys = {
   weatherKeys: (coords: Coordinates) => ['weather', coords] as const,

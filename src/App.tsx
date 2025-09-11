@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 import Home from './pages/dashboard'
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools/production";
 import NewWeatherPage from "./pages/search-page";
-import { ThemeProvider } from "./components/context/theme-provider";
+import { ThemeProvider } from "./context/theme-provider";
 import { Toaster } from "./components/ui/sonner";
 
 const queryClient = new QueryClient({

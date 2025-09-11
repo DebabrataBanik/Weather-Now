@@ -1,4 +1,4 @@
-import type { Coordinates, WeatherResponse } from "../types/weather";
+import type { Coordinates, WeatherResponse } from "@/types/weather";
 
 export async function getWeather({ lat, lon }: Coordinates): Promise<WeatherResponse> {
   const params = new URLSearchParams({

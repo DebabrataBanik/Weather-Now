@@ -1,4 +1,4 @@
-import type { Coordinates } from "../types/weather";
+import type { Coordinates } from "@/types/weather";
 import { useState, useEffect } from "react"
 
 interface GeolocationState {
