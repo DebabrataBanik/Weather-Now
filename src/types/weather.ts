@@ -70,3 +70,62 @@ export interface WeatherResponse {
     relative_humidity_2m_mean: number[];
   };
 }
+
+export interface LocationResult {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  elevation?: number;
+  feature_code?: string;
+  country_code?: string;
+  admin1_id?: number;
+  admin2_id?: number;
+  admin3_id?: number;
+  admin4_id?: number;
+  timezone?: string;
+  population?: number;
+  postcodes?: string[];
+  country_id?: number;
+  country?: string;
+  admin1?: string;
+  admin2?: string;
+  admin3?: string;
+  admin4?: string;
+}
+
+export interface GeocodingResponse {
+  results: LocationResult[];
+}
+
+export interface ReverseGeocodeResponse {
+  place_id: number;
+  licence: string;
+  osm_type: string;
+  osm_id: number;
+  lat: string;
+  lon: string;
+  class: string;
+  type: string;
+  place_rank: number;
+  importance: number;
+  addresstype: string;
+  name?: string;
+  display_name: string;
+  address: {
+    amenity?: string;
+    road?: string;
+    neighbourhood?: string;
+    suburb?: string;
+    city_district?: string;
+    city?: string;
+    county?: string;
+    state_district?: string;
+    state?: string;
+    postcode?: string;
+    country: string;
+    country_code: string;
+    [key: string]: string | undefined;
+  };
+  boundingbox: [string, string, string, string];
+}
