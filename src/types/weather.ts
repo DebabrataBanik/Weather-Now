@@ -112,20 +112,27 @@ export interface ReverseGeocodeResponse {
   addresstype: string;
   name?: string;
   display_name: string;
-  address: {
-    amenity?: string;
-    road?: string;
-    neighbourhood?: string;
-    suburb?: string;
-    city_district?: string;
-    city?: string;
-    county?: string;
-    state_district?: string;
-    state?: string;
-    postcode?: string;
-    country: string;
-    country_code: string;
-    [key: string]: string | undefined;
-  };
+  address: Address;
   boundingbox: [string, string, string, string];
+}
+
+export interface Address{
+  amenity?: string;
+  road?: string;
+  neighbourhood?: string;
+  suburb?: string;
+  city_district?: string;
+  city?: string;
+  county?: string;
+  state_district?: string;
+  state?: string;
+  postcode?: string;
+  country: string;
+  country_code: string;
+  [key: string]: string | undefined;
+}
+
+export interface WeatherCodeInfo{
+  description: string;
+  icon: string;
 }
