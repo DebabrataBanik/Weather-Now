@@ -2,6 +2,7 @@ import type { WeatherResponse } from "@/types/weather"
 import type { Address } from '@/types/weather.ts'
 import { format } from 'date-fns'
 import { getWeatherInfo } from "@/utils/weather-code-map"
+import { formatLocation } from "@/utils/location";
 
 interface WeatherResponseProps{
   data: WeatherResponse;
@@ -44,8 +45,10 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
     <div className="flex flex-col gap-8">
       <div className="card-bg-large h-[286px] rounded-[20px] p-6 flex justify-between items-center">
         <div>
-          <h2 className="font-bold text-[28px] mb-3">{location?.city}, {location?.state}, {location?.country}</h2>
-           <p className="font-medium text-lg opacity-80">{format(new Date(), 'EEEE, MMM d, yyyy')}</p> 
+          {
+            location && <h2 className="font-bold text-[28px] mb-3 leading-[1.2]">{formatLocation(location)}</h2>
+          }
+          <p className="font-medium text-lg opacity-80">{format(new Date(), 'EEEE, MMM d, yyyy')}</p> 
         </div>  
         <div className="flex items-center gap-5">
           <span>
