@@ -3,6 +3,7 @@ import { useGeolocation } from "../hooks/use-geolocation"
 import { useReverseGeocodeQuery, useWeatherQuery } from "../hooks/use-query";
 import CurrentWeatherData from "@/components/CurrentWeatherData";
 import DailyForecast from "@/components/DailyForecast";
+import HourlyForecast from "@/components/HourlyForecast";
 
 const Home = () => {
 
@@ -52,8 +53,8 @@ const Home = () => {
             <CurrentWeatherData data={weatherQuery.data} location={locationData} />
             <DailyForecast data={weatherQuery.data} />
           </div>
-          <div className="">
-            {/* Hourly Forecast */}
+          <div className="flex-1">
+            <HourlyForecast data={weatherQuery.data} />
           </div>
         </div>
       </section>

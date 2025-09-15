@@ -140,13 +140,56 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+
+  select, ::picker(select){
+    appearance: base-select;
+    position: relative;
+  }
+
+  select{
+    background-image: url('./assets/images/icon-dropdown.svg');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px 10px;
+  }
+
+  select::picker-icon{
+    display: none; 
+  }
+
+  ::picker(select){
+    position-area: bottom span-left; 
+    width: 214px;
+    border-radius: 12px;
+    padding: 8px;
+    padding-bottom: 4px;
+    background-color: var(--primary);
+    border: 1px solid var(--border);
+    margin-top: 10px;
+    box-shadow: 0 8px 16px #02012C32;
+  }
+
+  option{
+    color: white;
+    font-weight: 500;
+    line-height: 120%;
+    padding: 10px 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+
+    &:checked{
+      background-color: var(--secondary);
+    }
+    &:hover{
+      background-color: var(--secondary);
+    }
+    &::checkmark{
+      display: none;
+    }
+  }
 }
 
 @layer utilities{
-  .card-gradient{
-    @apply bg-gradient-to-br from-card-primary to-card-secondary;
-  }
-
   .card-bg-large{
     background: url(assets/images/bg-today-large.svg);
     background-repeat: no-repeat;
