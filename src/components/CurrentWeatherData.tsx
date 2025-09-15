@@ -24,7 +24,7 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
     
     {
       title: 'Feels Like',
-      value: `${Math.floor(apparent_temperature)}°`
+      value: `${Math.round(apparent_temperature)}°`
     },
     {
       title: 'Humidity', 
@@ -33,6 +33,7 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
     {
       title: 'Wind',
       value: `${wind_speed_10m} km/h`
+      // TODO: needs fix this above value is in m/s either convert it or modify url to get value in km/h
     },
     {
       title: 'Precipitation',
@@ -54,7 +55,7 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
           <span>
             <img src={icon} alt={description} className="w-[120px] aspect-square" /> 
           </span>
-          <span className="font-semibold text-8xl tracking-tighter italic">{Math.floor(temperature_2m)}°</span>
+          <span className="font-semibold text-8xl tracking-tighter italic">{Math.round(temperature_2m)}°</span>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-6">

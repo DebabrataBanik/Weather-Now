@@ -2,6 +2,7 @@ import InputField from "@/components/InputField";
 import { useGeolocation } from "../hooks/use-geolocation"
 import { useReverseGeocodeQuery, useWeatherQuery } from "../hooks/use-query";
 import CurrentWeatherData from "@/components/CurrentWeatherData";
+import DailyForecast from "@/components/DailyForecast";
 
 const Home = () => {
 
@@ -45,13 +46,13 @@ const Home = () => {
     <div className="flex flex-col mx-28">
       <h1 className="font-bold text-[52px] text-center font-heading leading-[1.25] my-16">How’s the sky looking today?</h1>
       <InputField />
-      <section className="mt-12">
+      <section className="mt-12 mb-20">
         <div className="flex gap-8">
-          <div className="flex flex-col w-[800px]">
+          <div className="flex flex-col w-[800px] gap-12">
             <CurrentWeatherData data={weatherQuery.data} location={locationData} />
-            {/* Daily Forecast */}
+            <DailyForecast data={weatherQuery.data} />
           </div>
-          <div className="w-1/3">
+          <div className="">
             {/* Hourly Forecast */}
           </div>
         </div>
