@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools/production";
 import NewWeatherPage from "./pages/search-page";
 import { ThemeProvider } from "./context/theme-provider";
 import { Toaster } from "./components/ui/sonner";
+import { UnitProvider } from "./context/unit-provider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,13 +25,15 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ThemeProvider defaultTheme="light">
-          <Layout>
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="city/:city" element={<NewWeatherPage />} />
-            </Routes>
-          </Layout>
-          <Toaster richColors />
+          <UnitProvider>
+            <Layout>
+              <Routes>
+                <Route index element={<Home />} />
+                <Route path="city/:city" element={<NewWeatherPage />} />
+              </Routes>
+            </Layout>
+            <Toaster richColors />
+          </UnitProvider>
         </ThemeProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

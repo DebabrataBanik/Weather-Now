@@ -3,6 +3,7 @@ import type { Address } from '@/types/weather.ts'
 import { format } from 'date-fns'
 import { getWeatherInfo } from "@/utils/weather-code-map"
 import { formatLocation } from "@/utils/location";
+import { useUnit } from "@/context/unit-context";
 
 interface WeatherResponseProps{
   data: WeatherResponse;
@@ -20,7 +21,9 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
 
   const {description, icon} = getWeatherInfo(weather_code)
 
-  const weatherInfo: WeatherInfo[]  = [
+  const { unit } = useUnit();
+
+  const weatherInfo: WeatherInfo[] = [
     
     {
       title: 'Feels Like',
@@ -32,12 +35,11 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
     },
     {
       title: 'Wind',
-      value: `${wind_speed_10m} km/h`
-      // TODO: needs fix this above value is in m/s either convert it or modify url to get value in km/h
+      value: `${wind_speed_10m} ${unit === "metric" ? 'km/h' : 'mph'}`
     },
     {
       title: 'Precipitation',
-      value: `${precipitation} mm`
+      value: `${precipitation} ${unit === "metric" ? 'mm' : 'inch'}`
     }
   ]
   
@@ -53,7 +55,7 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
         </div>  
         <div className="flex items-center gap-5">
           <span>
-            <img src={icon} alt={description} className="w-[120px] aspect-square" /> 
+            <img src={icon} alt={description} title={description} className="w-[120px] aspect-square" /> 
           </span>
           <span className="font-semibold text-8xl tracking-tighter italic">{Math.round(temperature_2m)}°</span>
         </div>

@@ -4,14 +4,16 @@ import { useReverseGeocodeQuery, useWeatherQuery } from "../hooks/use-query";
 import CurrentWeatherData from "@/components/CurrentWeatherData";
 import DailyForecast from "@/components/DailyForecast";
 import HourlyForecast from "@/components/HourlyForecast";
+import { useUnit } from "@/context/unit-context";
 
 const Home = () => {
-
+  
+  const { unit } = useUnit()
   const { coordinates, error: locationError, isLoading: locationLoading, getLocation } = useGeolocation();
-  const weatherQuery = useWeatherQuery(coordinates);
+  const weatherQuery = useWeatherQuery(coordinates, unit);
   const location = useReverseGeocodeQuery(coordinates);
 
-  console.log(location.data)
+  // console.log(location.data)
   // console.log(coordinates)
   // console.log(weatherQuery.data)
 
