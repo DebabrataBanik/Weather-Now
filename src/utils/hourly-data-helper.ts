@@ -1,0 +1,28 @@
+import { format, isToday } from 'date-fns';
+import type { HourlyData } from '@/types/weather';
+import type { WeatherResponse } from '@/types/weather';
+
+
+export const getHourlyData = (hourly: WeatherResponse['hourly'], selectedDay: string): HourlyData[] => {
+
+  const {time, temperature_2m, weather_code} = hourly;
+
+  const hourlyData = time.map((item, index) => (
+    {
+      time: item,
+      temp: temperature_2m[index],
+      code: weather_code[index]
+    }
+  )).filter(item => (
+    format(item.time, 'yyyy-MM-dd') === selectedDay
+  ))
+
+  if(isToday(new Date(selectedDay))){
+    const curHour = new Date().getHours();
+    const curHourIdx = hourlyData.findIndex(item => new Date(item.time).getHours() === curHour);
+
+    return hourlyData.slice(curHourIdx, curHourIdx+7);
+  } else {
+    return hourlyData.slice(0,7)
+  }
+}

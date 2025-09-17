@@ -136,3 +136,14 @@ export interface WeatherCodeInfo{
   description: string;
   icon: string;
 }
+
+export interface HourlyData{
+  time: string;
+  temp: number;
+  code: number;
+}
+
+export interface DaysOption{
+  value: string;
+  label: string;
+}
