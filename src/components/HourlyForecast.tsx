@@ -46,7 +46,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
             const t = format(new Date(time), 'h a')
 
             return (
-              <div key={time} className="flex items-center gap-2 justify-between bg-secondary border border-border rounded-[8px] py-2.5 pl-3 pr-4">
+              <div key={time} className="flex items-center gap-2 justify-between bg-secondary border border-border rounded-[8px] h-[60px] pl-3 pr-4">
                 <img  src={icon} alt={description} className="w-10" />
                 <span className="uppercase font-medium text-xl leading-[1.2] mr-auto">{t}</span>
                 <span className="font-medium leading-[1.2]">{Math.round(temp)}°</span>

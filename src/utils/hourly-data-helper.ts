@@ -21,8 +21,8 @@ export const getHourlyData = (hourly: WeatherResponse['hourly'], selectedDay: st
     const curHour = new Date().getHours();
     const curHourIdx = hourlyData.findIndex(item => new Date(item.time).getHours() === curHour);
 
-    return hourlyData.slice(curHourIdx, curHourIdx+7);
+    return hourlyData.slice(curHourIdx, curHourIdx+8);
   } else {
-    return hourlyData.slice(0,7)
+    return hourlyData.slice(0,8)
   }
 }

@@ -1,4 +1,4 @@
-import InputField from "@/components/InputField";
+import InputField from "@/subcomponents/InputField";
 import { useGeolocation } from "../hooks/use-geolocation"
 import { useReverseGeocodeQuery, useWeatherQuery } from "../hooks/use-query";
 import CurrentWeatherData from "@/components/CurrentWeatherData";
