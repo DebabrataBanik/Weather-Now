@@ -26,7 +26,7 @@ const DailyForecast = ({data}: DailyForecastProps) => {
             >
               <span className="font-medium text-lg leading-[1.2]" title={date.toLocaleDateString()} >{day}</span>
               
-              <img src={icon} alt={description} className="w-[60px] aspect-square" />
+              <img src={icon} alt={description} title={description} className="w-[60px] aspect-square" />
 
               <p className="w-full flex items-center justify-between">
                 <span className="font-medium leading-[1.2]">
