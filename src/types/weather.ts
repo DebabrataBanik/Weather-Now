@@ -70,34 +70,6 @@ export interface WeatherResponse {
     relative_humidity_2m_mean: number[];
   };
 }
-
-export interface LocationResult {
-  id: number;
-  name: string;
-  latitude: number;
-  longitude: number;
-  elevation?: number;
-  feature_code?: string;
-  country_code?: string;
-  admin1_id?: number;
-  admin2_id?: number;
-  admin3_id?: number;
-  admin4_id?: number;
-  timezone?: string;
-  population?: number;
-  postcodes?: string[];
-  country_id?: number;
-  country?: string;
-  admin1?: string;
-  admin2?: string;
-  admin3?: string;
-  admin4?: string;
-}
-
-export interface GeocodingResponse {
-  results: LocationResult[];
-}
-
 export interface ReverseGeocodeResponse {
   place_id: number;
   licence: string;
@@ -146,4 +118,38 @@ export interface HourlyData{
 export interface DaysOption{
   value: string;
   label: string;
+}
+
+export interface LocationResult {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  elevation: number;
+  feature_code: string;
+  country_code: string;
+  admin1_id?: number;
+  admin2_id?: number;
+  admin3_id?: number;
+  admin4_id?: number;
+  timezone: string;
+  population?: number;
+  postcodes?: string[];
+  country_id: number;
+  country: string;
+  admin1: string;
+  admin2?: string;
+  admin3?: string;
+  admin4?: string;
+}
+
+export interface GeocodingResponse {
+  results?: LocationResult[];
+  generationtime_ms?: number;
+}
+
+export interface NewLocationData{
+  lat: number;
+  lon: number;
+  name: string;
 }
