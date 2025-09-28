@@ -13,19 +13,17 @@ const InputField = () => {
 
   const navigate = useNavigate();
 
-  console.log(query)
-  data?.results?.forEach(item => console.log(item))
-  console.log(data?.results)
-
   const handleSubmit = () => {
-    const [lat, lon, name] = selectData.split('|')
-    navigate(`/city/${name}?lat=${lat}&lon=${lon}`)
+    const [lat, lon, name, admin1, country] = selectData.split('|')
+    navigate(`/city/${name}?state=${admin1}&country=${country}&lat=${lat}&lon=${lon}`)
   }
 
   const handleSelect = (data: string) => {
     setSelectData(data)
-    const [lat,lon, name, admin1, country] = data.split('|')
-    setQuery(`${name}, ${admin1}, ${country}`)
+    const [lat,lon, name, admin1 = '', country = ''] = data.split('|')
+    setQuery(
+      `${name}${admin1 ? `, ${admin1}` : ''}${country ? `, ${country}` : ''}`
+    );
   }
 
   return (
@@ -59,10 +57,10 @@ const InputField = () => {
                     return (
                       <CommandItem 
                         key={res.id}
-                        value={`${res.latitude}|${res.longitude}|${res.name}|${res.admin1}|${res.country}`}
+                        value={`${res.latitude}|${res.longitude}|${res.name}|${res.admin1 ?? ''}|${res.country ?? ''}|${res.country_code ?? ''}`}
                         onSelect={handleSelect} 
                         className="font-medium leading-[1.2] px-2 py-2.5 rounded-[8px] border border-transparent hover:!bg-secondary hover:!border-border data-[selected=true]:!bg-secondary data-[selected=true]:!border-border data-[selected=true]:text-white">
-                        <span>{res.name}{res.admin1 ? `, ${res.admin1}` : ''}, {res.country}</span>
+                        <span>{res.name}{res.admin1 ? `, ${res.admin1}` : ''}{res.country ? `, ${res.country}` : ''}</span>
                       </CommandItem>
                     )
                   })

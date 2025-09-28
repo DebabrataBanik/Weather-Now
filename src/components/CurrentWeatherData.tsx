@@ -8,6 +8,7 @@ import { useUnit } from "@/context/unit-context";
 interface WeatherResponseProps{
   data: WeatherResponse;
   location?: Address;
+  address?: string;
 }
 
 interface WeatherInfo{
@@ -15,7 +16,7 @@ interface WeatherInfo{
   value: string;
 }
 
-const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
+const CurrentWeatherData = ({data, location, address}: WeatherResponseProps) => {
 
   const { temperature_2m, apparent_temperature, precipitation, relative_humidity_2m, weather_code, wind_speed_10m } = data.current;
 
@@ -43,11 +44,15 @@ const CurrentWeatherData = ({data, location}: WeatherResponseProps) => {
     }
   ]
   
+  
 
   return (
     <div className="flex flex-col gap-8">
       <div className="card-bg-large h-[286px] rounded-[20px] p-6 flex justify-between items-center">
         <div>
+          {
+            address && <h2 className="font-bold text-[28px] mb-3 leading-[1.2]">{address}</h2>
+          }
           {
             location && <h2 className="font-bold text-[28px] mb-3 leading-[1.2]">{formatLocation(location)}</h2>
           }
