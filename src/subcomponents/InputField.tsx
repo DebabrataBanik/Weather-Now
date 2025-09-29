@@ -28,7 +28,7 @@ const InputField = () => {
 
   return (
     <div className="flex items-center gap-4 mx-auto">
-      <Command className="relative rounded-[12px] focus:outline-2 focus:outline-white focus:outline-offset-2 overflow-visible">
+      <Command className="relative rounded-[12px]  overflow-visible">
         <label className="relative" htmlFor="input">
           <input 
             value={query}
@@ -36,7 +36,7 @@ const InputField = () => {
             name="input"
             id="input"
             placeholder="Search for a place..."
-            className="flex items-center bg-primary h-14 w-[526px] px-6 pl-[60px] pb-1 rounded-[12px] font-medium font-sans text-xl placeholder:text-accent-foreground " 
+            className="flex items-center bg-primary h-14 w-[526px] px-6 pl-[60px] pb-1 rounded-[12px] font-medium font-sans text-xl placeholder:text-accent-foreground hover:bg-secondary transition-all duration-100 focus:outline-2 focus:outline-white focus:outline-offset-2"
           />
             <Search className="absolute top-1/2 -translate-y-1/2 left-6 w-5 h-5 text-accent-foreground" />
         </label>
@@ -72,7 +72,7 @@ const InputField = () => {
       <button
         onClick={handleSubmit}  
         disabled={!selectData}
-        className="bg-card-primary px-6 rounded-xl leading-14 text-xl font-medium cursor-pointer focus:outline-2 focus:outline-card-primary focus:outline-offset-2">
+        className="bg-card-primary px-6 rounded-xl leading-14 text-xl font-medium cursor-pointer hover:bg-card-secondary transition-all duration-100 focus:outline-2 focus:outline-card-primary focus:outline-offset-2">
           Search
       </button>
 

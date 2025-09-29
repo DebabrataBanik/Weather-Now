@@ -8,15 +8,13 @@ const UnitSelect = () => {
 
   const { unit, setUnit } = useUnit()
 
-  // console.log('test')
-
   const itemClass = (active: boolean) => `flex items-center justify-between text-base font-medium leading-[1.2] px-2 py-2.5 ${active ? 'bg-secondary text-white rounded-[8px]' : ''}`
 
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild className="rounded-[8px] px-4 py-3 bg-primary">
-          <button className="text-white flex gap-2.5 items-center cursor-pointer">
+          <button className="text-white flex gap-2.5 items-center cursor-pointer focus:outline-2 focus:outline-white focus:outline-offset-2">
             <img src={UnitsIcon} className="w-4 h-4" />
             <span className="font-medium leading-2.5">Units</span>
             <img src={Dropdown} className="w-3 h-5" />
