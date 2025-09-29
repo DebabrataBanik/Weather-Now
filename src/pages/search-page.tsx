@@ -34,16 +34,16 @@ const NewWeatherPage = () => {
   const locationData = `${params.city}${state ? `, ${state}`: ''}${country ? `, ${country}`: ''}`
 
   return (
-    <div className="flex flex-col mx-28">
-      <h1 className="font-bold text-[52px] text-center font-heading leading-[1.25] my-16">How’s the sky looking today?</h1>
+    <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
+      <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
       <InputField />
-      <section className="mt-12 mb-20">
-        <div className="flex gap-8">
-          <div className="flex flex-col w-[800px] gap-12">
+      <section className="mt-8 lg:mt-12 mb-12 sm:mb-20">
+        <div className="grid grid-cols-4 sm:grid-cols-12 gap-8">
+          <div className="flex flex-col col-span-4 sm:col-span-12 lg:col-span-8 lg:gap-12 gap-8">
             <CurrentWeatherData data={weatherQuery.data} address={locationData} />
             <DailyForecast data={weatherQuery.data} />
           </div>
-          <div className="flex-1">
+          <div className="col-span-4 sm:col-span-12 lg:col-span-4">
             <HourlyForecast data={weatherQuery.data} />
           </div>
         </div>

@@ -19,7 +19,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
   const hourlyForecastArr = getHourlyData(data.hourly, selectedDay)
 
   return (
-    <section className="w-full bg-primary rounded-3xl flex flex-col gap-4 p-6">
+    <section className="w-full bg-primary rounded-3xl flex flex-col gap-4 px-4 py-5 sm:p-6">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl leading-[1.2]">Hourly forecast</h2>
         <select 

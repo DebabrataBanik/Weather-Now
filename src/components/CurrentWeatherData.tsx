@@ -47,9 +47,9 @@ const CurrentWeatherData = ({data, location, address}: WeatherResponseProps) => 
   
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="card-bg-large h-[286px] rounded-[20px] p-6 flex justify-between items-center">
-        <div>
+    <div className="flex flex-col lg:gap-8 gap-5">
+      <div className="card-bg-large h-[286px] rounded-[20px] p-6 flex flex-col sm:flex-row justify-between items-center">
+        <div className="text-center sm:text-left">
           {
             address && <h2 className="font-bold text-[28px] mb-3 leading-[1.2]">{address}</h2>
           }
@@ -65,7 +65,7 @@ const CurrentWeatherData = ({data, location, address}: WeatherResponseProps) => 
           <span className="font-semibold text-8xl tracking-tighter italic">{Math.round(temperature_2m)}°</span>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:gap-6 gap-5">
         
         {
           weatherInfo.map(({title, value}) => (

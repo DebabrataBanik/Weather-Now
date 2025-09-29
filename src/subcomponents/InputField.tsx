@@ -27,16 +27,16 @@ const InputField = () => {
   }
 
   return (
-    <div className="flex items-center gap-4 mx-auto">
-      <Command className="relative rounded-[12px]  overflow-visible">
-        <label className="relative" htmlFor="input">
+    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 lg:mx-auto">
+      <Command className="relative rounded-[12px] overflow-visible">
+        <label className="relative w-full" htmlFor="input">
           <input 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             name="input"
             id="input"
             placeholder="Search for a place..."
-            className="flex items-center bg-primary h-14 w-[526px] px-6 pl-[60px] pb-1 rounded-[12px] font-medium font-sans text-xl placeholder:text-accent-foreground hover:bg-secondary transition-all duration-100 focus:outline-2 focus:outline-white focus:outline-offset-2"
+            className="flex items-center w-full bg-primary h-14 lg:w-[526px] px-6 pl-[60px] pb-1 rounded-[12px] font-medium font-sans text-xl placeholder:text-accent-foreground hover:bg-secondary transition-all duration-100 focus:outline-2 focus:outline-white focus:outline-offset-2"
           />
             <Search className="absolute top-1/2 -translate-y-1/2 left-6 w-5 h-5 text-accent-foreground" />
         </label>
@@ -72,10 +72,9 @@ const InputField = () => {
       <button
         onClick={handleSubmit}  
         disabled={!selectData}
-        className="bg-card-primary px-6 rounded-xl leading-14 text-xl font-medium cursor-pointer hover:bg-card-secondary transition-all duration-100 focus:outline-2 focus:outline-card-primary focus:outline-offset-2">
+        className="w-full sm:w-fit bg-card-primary px-6 rounded-xl leading-14 text-xl font-medium cursor-pointer hover:bg-card-secondary transition-all duration-100 focus:outline-2 focus:outline-card-primary focus:outline-offset-2">
           Search
       </button>
-
 
     </div>
   )
