@@ -17,12 +17,11 @@ interface WeatherInfo{
 }
 
 const CurrentWeatherData = ({data, location, address}: WeatherResponseProps) => {
+  const { unit } = useUnit();
 
   const { temperature_2m, apparent_temperature, precipitation, relative_humidity_2m, weather_code, wind_speed_10m } = data.current;
 
   const {description, icon} = getWeatherInfo(weather_code)
-
-  const { unit } = useUnit();
 
   const weatherInfo: WeatherInfo[] = [
     
