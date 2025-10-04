@@ -1,6 +1,6 @@
 import { useSearchLocationQuery } from "@/hooks/use-query"
 import { Command, CommandList, CommandItem } from "@/components/ui/command"
-import { Search } from "lucide-react"
+import Search from '@/assets/images/icon-search.svg' 
 import Loading from '@/assets/images/icon-loading.svg'
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -38,13 +38,13 @@ const InputField = () => {
             placeholder="Search for a place..."
             className="flex items-center w-full bg-primary h-14 lg:w-[526px] px-6 pl-[60px] pb-1 rounded-[12px] font-medium font-sans text-xl placeholder:text-accent-foreground hover:bg-secondary transition-all duration-100 focus:outline-2 focus:outline-white focus:outline-offset-2"
           />
-            <Search className="absolute top-1/2 -translate-y-1/2 left-6 w-5 h-5 text-accent-foreground" />
+            <img src={Search} className="absolute top-1/2 -translate-y-1/2 left-6" />
         </label>
         {
           isLoading ? 
           <CommandList className="absolute top-14 mt-2.5 w-full z-10 bg-primary border border-secondary rounded-[12px] p-2">
             <div className="font-medium leading-[1.2] px-2 py-2.5 flex items-center gap-2.5">
-              <img src={Loading} className="w-4 h-4" />
+              <img src={Loading} className="w-4 h-4 animate-spin" />
               <span>Search in progress</span>
             </div>
           </CommandList> 
