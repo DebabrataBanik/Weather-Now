@@ -70,7 +70,7 @@ const CurrentWeatherData = ({data, location, address}: WeatherResponseProps) => 
           weatherInfo.map(({title, value}) => (
             <div 
               key={title}
-              className="p-5 rounded-lg bg-primary border border-border"  
+              className="p-5 rounded-lg bg-primary border"  
             >
               <h3 className="text-accent-foreground font-medium text-lg">{title}</h3>
               <p className="font-light text-[32px]">{value}</p>

@@ -22,7 +22,7 @@ const DailyForecast = ({data}: DailyForecastProps) => {
             return (
             <div 
               key={item}
-              className="border border-border bg-primary py-4 px-2.5 flex flex-col gap-4 items-center rounded-lg"  
+              className="border bg-primary py-4 px-2.5 flex flex-col gap-4 items-center rounded-lg"  
             >
               <span className="font-medium text-lg leading-[1.2]" title={date.toLocaleDateString()} >{day}</span>
               

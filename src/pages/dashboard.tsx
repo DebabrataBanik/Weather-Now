@@ -7,6 +7,7 @@ import HourlyForecast from "@/components/HourlyForecast";
 import { useUnit } from "@/context/unit-context";
 import Retry from '@/assets/images/icon-retry.svg'
 import Error from '@/assets/images/icon-error.svg'
+import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
 
 const Home = () => {
   
@@ -14,10 +15,6 @@ const Home = () => {
   const { coordinates, error: locationError, isLoading: locationLoading } = useGeolocation();
   const weatherQuery = useWeatherQuery(coordinates, unit);
   const location = useReverseGeocodeQuery(coordinates);
-
-  if (locationLoading) {
-    return <div>Someins wrong</div>
-  }
 
   if (locationError) {
     return (
@@ -35,25 +32,7 @@ const Home = () => {
     )
   }
   
-  if (!coordinates) {
-    return (
-      <div className="flex flex-col items-center justify-center pt-10 mt-16 gap-6">
-        <img src={Error} className="w-10" />
-        <h1 className="font-heading font-bold text-[52px] leading-[1.2]">Couldn't fetch coordinates</h1>
-        <p className="text-accent-foreground font-medium text-xl leading-[1.2]">We couldn't fetch coordinates. Please try again.</p>
-        <button
-          onClick={() => window.location.reload()} 
-          className="rounded-[8px] bg-primary px-4 py-3 flex items-center gap-2.5 cursor-pointer">
-          <img src={Retry} className="w-4" />
-          <span className="font-medium leading-[1.2]">Retry</span>
-        </button>
-      </div>
-    );
-  }
-  
-  const locationData = location.data?.address;
-
-  if (weatherQuery.error || !weatherQuery.data) {
+  if (!locationLoading && coordinates && weatherQuery.error) {
     return (
       <div className="flex flex-col items-center justify-center pt-10 mt-16 gap-6">
         <img src={Error} className="w-10" />
@@ -69,22 +48,36 @@ const Home = () => {
       </div>
     )
   }
+  
+  const locationData = location.data?.address;
+
+  if(locationLoading || weatherQuery.isLoading || !weatherQuery.data){
+    return (
+      <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
+        <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
+        <InputField />
+        <DashboardSkeleton />
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
       <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
       <InputField />
+      
       <section className="mt-8 lg:mt-12 mb-12 sm:mb-20">
         <div className="grid grid-cols-4 sm:grid-cols-12 gap-8">
           <div className="flex flex-col col-span-4 sm:col-span-12 lg:col-span-8 lg:gap-12 gap-8">
-            <CurrentWeatherData data={weatherQuery.data!} location={locationData} />
-            <DailyForecast data={weatherQuery.data!} />
+            <CurrentWeatherData data={weatherQuery.data} location={locationData} />
+            <DailyForecast data={weatherQuery.data} />
           </div>
           <div className="col-span-4 sm:col-span-12 lg:col-span-4">
-            <HourlyForecast data={weatherQuery.data!} />
+            <HourlyForecast data={weatherQuery.data} />
           </div>
         </div>
       </section>
+
     </div>
   )
 }

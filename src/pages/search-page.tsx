@@ -6,6 +6,9 @@ import InputField from "@/subcomponents/InputField";
 import CurrentWeatherData from "@/components/CurrentWeatherData";
 import DailyForecast from "@/components/DailyForecast";
 import HourlyForecast from "@/components/HourlyForecast";
+import Error from '@/assets/images/icon-error.svg'
+import Retry from '@/assets/images/icon-retry.svg'
+import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
 
 const NewWeatherPage = () => {
 
@@ -23,15 +26,33 @@ const NewWeatherPage = () => {
   
   if (weatherQuery.error) {
     return (
-      <div>Weather Fetching error</div>
+      <div className="flex flex-col items-center justify-center pt-10 mt-16 gap-6">
+        <img src={Error} className="w-10" />
+        <h1 className="font-heading font-bold text-[52px] leading-[1.2]">Something went wrong</h1>
+        <p className="w-[554px] text-center text-accent-foreground font-medium text-xl leading-[1.2]">We couldn’t connect to the server (API error). Please try again in a few moments.</p>
+        <button
+          onClick={() => weatherQuery.refetch()} 
+          disabled={weatherQuery.isFetching}
+          className="rounded-[8px] bg-primary px-4 py-3 flex items-center gap-2.5 cursor-pointer">
+          <img src={Retry} className="w-4" />
+          <span className="font-medium leading-[1.2]">Retry</span>
+        </button>
+      </div>
+    )
+  }
+  
+  const locationData = `${params.city}${state ? `, ${state}`: ''}${country ? `, ${country}`: ''}`
+
+  if(weatherQuery.isLoading || !weatherQuery.data){
+    return(
+      <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
+        <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
+        <InputField />
+        <DashboardSkeleton />
+      </div>
     )
   }
 
-  if (!weatherQuery.data) {
-    return <div>Someins wrong with weather data</div>
-  }
-
-  const locationData = `${params.city}${state ? `, ${state}`: ''}${country ? `, ${country}`: ''}`
 
   return (
     <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
@@ -47,7 +68,7 @@ const NewWeatherPage = () => {
             <HourlyForecast data={weatherQuery.data} />
           </div>
         </div>
-      </section>
+      </section> 
     </div>
   )
 }
