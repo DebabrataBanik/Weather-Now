@@ -19,7 +19,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
   const hourlyForecastArr = getHourlyData(data.hourly, selectedDay)
 
   return (
-    <section className="w-full bg-primary rounded-3xl flex flex-col gap-4 px-4 py-5 sm:p-6">
+    <section className="w-full max-h-[696px] bg-primary rounded-3xl flex flex-col gap-4 px-4 py-5 sm:p-6">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl leading-[1.2]">Hourly forecast</h2>
         <select 
@@ -37,7 +37,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
           }
         </select>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 overflow-y-scroll scrollbar-none">
         
         {
           hourlyForecastArr.map(({time,temp,code}) => {
@@ -46,7 +46,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
             const t = format(new Date(time), 'h a')
 
             return (
-              <div key={time} className="flex items-center gap-2 justify-between bg-secondary border rounded-[8px] h-[60px] pl-3 pr-4">
+              <div key={time} className="flex items-center gap-2 justify-between bg-secondary border rounded-[8px] min-h-[60px] pl-3 pr-4">
                 <img  src={icon} alt={description} title={description} className="w-10" />
                 <span className="uppercase font-medium text-xl leading-[1.2] mr-auto">{t}</span>
                 <span className="font-medium leading-[1.2]">{Math.round(temp)}°</span>
