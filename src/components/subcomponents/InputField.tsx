@@ -1,6 +1,5 @@
 import { useSearchLocationQuery } from "@/hooks/use-query"
 import { Command, CommandList, CommandItem } from "@/components/ui/command"
-// import { Search } from "lucide-react"
 import Search from '@/assets/images/icon-search.svg'
 import Loading from '@/assets/images/icon-loading.svg'
 import { useState } from "react"
@@ -23,7 +22,7 @@ const InputField = () => {
 
   const handleSelect = (data: string) => {
     setSelectData(data)
-    const [lat,lon, name, admin1 = '', country = ''] = data.split('|')
+    const [,, name, admin1 = '', country = ''] = data.split('|')
     setQuery(
       `${name}${admin1 ? `, ${admin1}` : ''}${country ? `, ${country}` : ''}`
     );
