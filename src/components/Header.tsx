@@ -1,7 +1,7 @@
 import { useTheme } from "@/context/theme-context";
 import { Sun, Moon } from "lucide-react";
 import Logo from '@/assets/images/logo.svg'
-import UnitSelect from "@/subcomponents/UnitSelect";
+import UnitSelect from "@/components/subcomponents/UnitSelect";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();

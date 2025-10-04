@@ -2,7 +2,7 @@ import { useUnit } from "@/context/unit-context";
 import { useWeatherQuery } from "@/hooks/use-query";
 import type { Coordinates } from "@/types/weather";
 import { useParams, useSearchParams } from "react-router-dom";
-import InputField from "@/subcomponents/InputField";
+import InputField from "@/components/subcomponents/InputField";
 import CurrentWeatherData from "@/components/CurrentWeatherData";
 import DailyForecast from "@/components/DailyForecast";
 import HourlyForecast from "@/components/HourlyForecast";
