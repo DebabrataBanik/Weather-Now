@@ -24,7 +24,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl leading-[1.2]">Hourly forecast</h2>
         <select 
-          className="rounded-[8px] font-medium bg-border outline-0 px-4 pr-10 py-2 cursor-pointer" 
+          className="rounded-[8px] font-medium bg-border outline-0 px-4 pr-10 py-2 focus:outline-2 focus:outline-white focus:outline-offset-2 cursor-pointer" 
           name="day" 
           id="day"
           value={selectedDay}
