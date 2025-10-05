@@ -38,6 +38,10 @@ const NewWeatherPage = () => {
       hasScrolledRef.current = true;
     }
   }, [weatherQuery.data])
+
+  useEffect(() => {
+    hasScrolledRef.current = false;
+  }, [params.city, state, country, lat, lon])
   
   if (weatherQuery.error) {
     return (
