@@ -61,8 +61,10 @@ const NewWeatherPage = () => {
   }
   
   let location = ''
-  if(params.city?.toLocaleLowerCase() === state.toLocaleLowerCase()){
+  if(params.city?.toLowerCase() === state.toLowerCase()){
     location = `${params.city}${country ? `, ${country}`: ''}`
+  } else if(params.city?.toLowerCase() === country.toLowerCase()) {
+    location = `${params.city}`
   } else {
     location = `${params.city}${state ? `, ${state}`: ''}${country ? `, ${country}`: ''}`
   }
