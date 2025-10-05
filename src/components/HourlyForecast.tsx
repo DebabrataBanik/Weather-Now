@@ -32,7 +32,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
         >
           {
             nextDays.map(({label, value}) => (
-                <option key={value} value={value}>{label}</option>
+                <option className="focus:bg-secondary" key={value} value={value}>{label}</option>
               )
             )
           }

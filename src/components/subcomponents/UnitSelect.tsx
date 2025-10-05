@@ -23,11 +23,11 @@ const UnitSelect = () => {
         <DropdownMenuContent align="end" className="flex flex-col gap-1 w-[214px] bg-primary rounded-lg px-2 py-1.5 border">
           {
             unit === "metric" ?  
-            <DropdownMenuItem className="px-2 py-2.5 font-medium leading-[1.2] text-base hover:!bg-secondary hover:!text-white cursor-pointer" onClick={() => setUnit("imperial")}>
+            <DropdownMenuItem className="px-2 py-2.5 font-medium leading-[1.2] text-base focus:!bg-secondary focus:!text-white hover:!bg-secondary hover:!text-white cursor-pointer" onClick={() => setUnit("imperial")}>
               Switch to Imperial
             </DropdownMenuItem>
             :
-            <DropdownMenuItem className="px-2 py-2.5 font-medium leading-[1.2] text-base hover:!bg-secondary hover:!text-white cursor-pointer" onClick={() => setUnit("metric")}>
+            <DropdownMenuItem className="px-2 py-2.5 font-medium leading-[1.2] text-base focus:!bg-secondary focus:!text-white hover:!bg-secondary hover:!text-white cursor-pointer" onClick={() => setUnit("metric")}>
               Switch to Metric
             </DropdownMenuItem>
           }
