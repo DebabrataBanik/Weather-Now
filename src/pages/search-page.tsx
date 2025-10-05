@@ -60,7 +60,12 @@ const NewWeatherPage = () => {
     )
   }
   
-  const locationData = `${params.city}${state ? `, ${state}`: ''}${country ? `, ${country}`: ''}`
+  let location = ''
+  if(params.city?.toLocaleLowerCase() === state.toLocaleLowerCase()){
+    location = `${params.city}${country ? `, ${country}`: ''}`
+  } else {
+    location = `${params.city}${state ? `, ${state}`: ''}${country ? `, ${country}`: ''}`
+  }
 
   if(weatherQuery.isLoading || !weatherQuery.data){
     return(
@@ -75,13 +80,13 @@ const NewWeatherPage = () => {
 
   return (
     <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
-      <WeatherHelmet data={weatherQuery.data} location={locationData} />
+      <WeatherHelmet data={weatherQuery.data} location={location} />
       <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
       <InputField />
       <section ref={sectionRef} className="mt-8 lg:mt-12 mb-12 sm:mb-20">
         <div className="grid grid-cols-4 sm:grid-cols-12 gap-8">
           <div className="flex flex-col col-span-4 sm:col-span-12 lg:col-span-8 lg:gap-12 gap-8">
-            <CurrentWeatherData data={weatherQuery.data} address={locationData} />
+            <CurrentWeatherData data={weatherQuery.data} address={location} />
             <DailyForecast data={weatherQuery.data} />
           </div>
           <div className="col-span-4 sm:col-span-12 lg:col-span-4">

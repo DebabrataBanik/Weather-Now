@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import type { HourlyData } from '@/types/weather';
 import type { WeatherResponse } from '@/types/weather';
 
@@ -13,9 +12,10 @@ export const getHourlyData = (hourly: WeatherResponse['hourly'], selectedDay: st
       temp: temperature_2m[index],
       code: weather_code[index]
     }
-  )).filter(item => (
-    format(item.time, 'yyyy-MM-dd') === selectedDay
-  ))
+  )).filter(item => {
+    const itemDate = item.time.split('T')[0];
+    return itemDate === selectedDay;
+  })
 
   return hourlyData;
 }

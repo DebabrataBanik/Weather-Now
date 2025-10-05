@@ -11,10 +11,11 @@ interface HourlyForecastProps{
 
 const HourlyForecast = ({data}: HourlyForecastProps) => {
 
-  const today = getToday()
+  const timezone = data.timezone;
+  const today = getToday(timezone)
   const [selectedDay, setSelectedDay] = useState(today)
 
-  const nextDays = getNext7Days();
+  const nextDays = getNext7Days(timezone);
 
   const hourlyForecastArr = getHourlyData(data.hourly, selectedDay)
 

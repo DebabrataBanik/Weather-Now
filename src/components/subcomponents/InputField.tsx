@@ -28,6 +28,8 @@ const InputField = () => {
     );
   }
 
+  console.log(data?.results)
+
   const showDropdown = query.length > 3 && !selectData && (isLoading || data);
 
   return (
