@@ -8,6 +8,8 @@ import { useUnit } from "@/context/unit-context";
 import Retry from '@/assets/images/icon-retry.svg'
 import Error from '@/assets/images/icon-error.svg'
 import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
+import WeatherHelmet from "@/components/subcomponents/WeatherHelmet";
+import { formatLocation } from "@/utils/location";
 
 const Home = () => {
   
@@ -50,6 +52,7 @@ const Home = () => {
   }
   
   const locationData = location.data?.address;
+  const locationName = locationData ? formatLocation(locationData) : 'Weather Now';
 
   if(locationLoading || weatherQuery.isLoading || !weatherQuery.data){
     return (
@@ -63,6 +66,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
+      <WeatherHelmet data={weatherQuery.data} location={locationName} />
       <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
       <InputField />
       

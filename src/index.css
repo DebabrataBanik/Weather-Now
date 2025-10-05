@@ -206,9 +206,15 @@
 }
 
 @layer utilities{
-  .card-bg-large{
-    background: url(assets/images/bg-today-large.svg);
+  .card-bg{
+    background: url(assets/images/bg-today-small.svg);
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  
+  @media (min-width: 640px) {
+    .card-bg{
+      background: url(assets/images/bg-today-large.svg);
+    }
   }
 }

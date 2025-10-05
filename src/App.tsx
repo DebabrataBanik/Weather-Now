@@ -6,6 +6,7 @@ import NewWeatherPage from "./pages/search-page";
 import { ThemeProvider } from "./context/theme-provider";
 import { Toaster } from "./components/ui/sonner";
 import { UnitProvider } from "./context/unit-provider";
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,21 +22,23 @@ const queryClient = new QueryClient({
 const App = () => {
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider defaultTheme="dark">
-          <UnitProvider>
-            <Layout>
-              <Routes>
-                <Route index element={<Home />} />
-                <Route path="city/:city" element={<NewWeatherPage />} />
-              </Routes>
-            </Layout>
-            <Toaster richColors />
-          </UnitProvider>
-        </ThemeProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider defaultTheme="dark">
+            <UnitProvider>
+                <Layout>
+                  <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="city/:city" element={<NewWeatherPage />} />
+                  </Routes>
+                </Layout>
+                <Toaster richColors />
+            </UnitProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 

@@ -47,7 +47,7 @@ const CurrentWeatherData = ({data, location, address}: WeatherResponseProps) => 
 
   return (
     <div className="flex flex-col lg:gap-8 gap-5">
-      <div className="card-bg-large h-[286px] rounded-[20px] p-6 flex flex-col sm:flex-row justify-between items-center">
+      <div className="card-bg h-[286px] rounded-[20px] p-6 flex flex-col sm:flex-row justify-between items-center">
         <div className="text-center sm:text-left">
           {
             address && <h2 className="font-bold text-[28px] mb-3 leading-[1.2]">{address}</h2>

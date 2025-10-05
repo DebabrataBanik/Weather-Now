@@ -9,6 +9,7 @@ import HourlyForecast from "@/components/HourlyForecast";
 import Error from '@/assets/images/icon-error.svg'
 import Retry from '@/assets/images/icon-retry.svg'
 import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
+import WeatherHelmet from "@/components/subcomponents/WeatherHelmet";
 
 const NewWeatherPage = () => {
 
@@ -56,6 +57,7 @@ const NewWeatherPage = () => {
 
   return (
     <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
+      <WeatherHelmet data={weatherQuery.data} location={locationData} />
       <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
       <InputField />
       <section className="mt-8 lg:mt-12 mb-12 sm:mb-20">
