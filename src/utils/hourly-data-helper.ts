@@ -1,4 +1,4 @@
-import { format, isToday } from 'date-fns';
+import { format } from 'date-fns';
 import type { HourlyData } from '@/types/weather';
 import type { WeatherResponse } from '@/types/weather';
 
@@ -17,12 +17,5 @@ export const getHourlyData = (hourly: WeatherResponse['hourly'], selectedDay: st
     format(item.time, 'yyyy-MM-dd') === selectedDay
   ))
 
-  if(isToday(new Date(selectedDay))){
-    const curHour = new Date().getHours();
-    const curHourIdx = hourlyData.findIndex(item => new Date(item.time).getHours() === curHour);
-
-    return hourlyData.slice(curHourIdx);
-  } else {
-    return hourlyData;
-  }
+  return hourlyData;
 }

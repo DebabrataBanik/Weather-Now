@@ -10,6 +10,7 @@ import Error from '@/assets/images/icon-error.svg'
 import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
 import WeatherHelmet from "@/components/subcomponents/WeatherHelmet";
 import { formatLocation } from "@/utils/location";
+import { useEffect, useRef } from "react";
 
 const Home = () => {
   
@@ -17,6 +18,19 @@ const Home = () => {
   const { coordinates, error: locationError, isLoading: locationLoading } = useGeolocation();
   const weatherQuery = useWeatherQuery(coordinates, unit);
   const location = useReverseGeocodeQuery(coordinates);
+
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const hasScrolledRef = useRef(false);
+
+  useEffect(() => {
+    if (hasScrolledRef.current) return;
+    if (sectionRef.current && weatherQuery.data) {
+      requestAnimationFrame(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      hasScrolledRef.current = true;
+    }
+  }, [weatherQuery.data])
 
   if (locationError) {
     return (
@@ -70,7 +84,7 @@ const Home = () => {
       <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>
       <InputField />
       
-      <section className="mt-8 lg:mt-12 mb-12 sm:mb-20">
+      <section ref={sectionRef} className="mt-8 lg:mt-12 mb-12 sm:mb-20">
         <div className="grid grid-cols-4 sm:grid-cols-12 gap-8">
           <div className="flex flex-col col-span-4 sm:col-span-12 lg:col-span-8 lg:gap-12 gap-8">
             <CurrentWeatherData data={weatherQuery.data} location={locationData} />
