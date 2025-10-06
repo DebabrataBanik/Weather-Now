@@ -32,7 +32,7 @@ const DailyForecast = ({data}: DailyForecastProps) => {
                 <span className="font-medium leading-[1.2]">
                   {Math.round(temperature_2m_max[idx])}°
                 </span>
-                <span className="font-medium leading-[1.2]">
+                <span className="font-medium leading-[1.2] text-accent-foreground">
                   {Math.round(temperature_2m_min[idx])}°
                 </span>
               </p>

@@ -20,8 +20,8 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
   const hourlyForecastArr = getHourlyData(data.hourly, selectedDay)
 
   return (
-    <section className="w-full max-h-[696px] bg-primary rounded-3xl flex flex-col gap-4 px-4 py-5 sm:p-6">
-      <div className="flex items-center justify-between">
+    <section className="w-full max-h-[696px] bg-primary rounded-3xl flex flex-col gap-4 p-4 pr-0 py-5 sm:p-6 sm:pr-0">
+      <div className="flex items-center justify-between pr-4 sm:pr-6">
         <h2 className="font-semibold text-xl leading-[1.2]">Hourly forecast</h2>
         <select 
           className="rounded-[8px] font-medium bg-border outline-0 px-4 pr-10 py-2 focus:outline-2 focus:outline-white focus:outline-offset-2 cursor-pointer" 
@@ -38,7 +38,7 @@ const HourlyForecast = ({data}: HourlyForecastProps) => {
           }
         </select>
       </div>
-      <div className="flex flex-col gap-4 overflow-y-scroll scrollbar-none">
+      <div className="flex flex-col gap-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-secondary scrollbar-track-transparent pr-4 sm:pr-6">
         
         {
           hourlyForecastArr.map(({time,temp,code}) => {
