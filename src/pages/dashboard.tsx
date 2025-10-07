@@ -11,54 +11,63 @@ import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
 import WeatherHelmet from "@/components/subcomponents/WeatherHelmet";
 import { formatLocation } from "@/utils/location";
 import { useEffect, useRef } from "react";
+import type { Coordinates } from "@/types/weather";
+import { toast } from "sonner";
+
+const defaultCoordinates: Coordinates = {
+  lat: 28.6139,
+  lon: 77.2090
+}
 
 const Home = () => {
   
   const { unit } = useUnit()
-  const { coordinates, error: locationError, isLoading: locationLoading } = useGeolocation();
-  const weatherQuery = useWeatherQuery(coordinates, unit);
-  const location = useReverseGeocodeQuery(coordinates);
+  const { coordinates, isLoading: locationLoading, error: locationError, getLocation} = useGeolocation();
+  const coords = coordinates || defaultCoordinates;
+  const weatherQuery = useWeatherQuery(coords, unit);
+  const location = useReverseGeocodeQuery(coords);
 
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasScrolledRef = useRef(false);
+  const scrollTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (hasScrolledRef.current) return;
-    if (sectionRef.current && weatherQuery.data) {
-      requestAnimationFrame(() => {
-        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      });
-      hasScrolledRef.current = true;
+  if (weatherQuery.data && location.data && !hasScrolledRef.current) {
+    if (scrollTimerRef.current) {
+      clearTimeout(scrollTimerRef.current);
     }
-  }, [weatherQuery.data])
-
-  if (locationError) {
-    return (
-      <div className="flex flex-col items-center justify-center pt-10 mt-16 gap-6">
-        <img src={Error} className="w-10" />
-        <h1 className="font-heading font-bold text-[52px] leading-[1.2]">Location Access Denied</h1>
-        <p className="text-accent-foreground font-medium text-xl leading-[1.2]">We couldn't fetch coordinates. Please provide location access.</p>
-        <button
-          onClick={() => window.location.reload()} 
-          className="rounded-[8px] bg-primary px-4 py-3 flex items-center gap-2.5">
-          <img src={Retry} className="w-4" />
-          <span className="font-medium leading-[1.2]">Retry</span>
-        </button>
-      </div>
-    )
+    
+    scrollTimerRef.current = setTimeout(() => {
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        hasScrolledRef.current = true;
+      }
+      scrollTimerRef.current = null;
+    }, 500);
   }
   
-  if (!locationLoading && coordinates && weatherQuery.error) {
+  const didToastRef = useRef(false);
+  useEffect(() => {
+    if (!locationError || didToastRef.current) return;
+    didToastRef.current = true;
+
+    toast.info("We couldn't access your location", {
+      description: "New Delhi is shown as a fallback. You can enable location anytime.",
+      action: { label: "Try again", onClick: () => getLocation() },
+      duration: 5000
+    });
+  }, [locationError, getLocation]);
+
+  if (!locationLoading && weatherQuery.error) {
     return (
       <div className="flex flex-col items-center justify-center pt-10 mt-16 gap-6">
-        <img src={Error} className="w-10" />
+        <img src={Error} alt="Error Icon" className="w-10" />
         <h1 className="font-heading font-bold text-[52px] leading-[1.2]">Something went wrong</h1>
         <p className="w-[554px] text-center text-accent-foreground font-medium text-xl leading-[1.2]">We couldn’t connect to the server (API error). Please try again in a few moments.</p>
         <button
           onClick={() => weatherQuery.refetch()} 
           disabled={weatherQuery.isFetching}
           className="rounded-[8px] bg-primary px-4 py-3 flex items-center gap-2.5 cursor-pointer">
-          <img src={Retry} className="w-4" />
+          <img src={Retry} alt="Retry Icon" className="w-4" />
           <span className="font-medium leading-[1.2]">Retry</span>
         </button>
       </div>
@@ -66,9 +75,9 @@ const Home = () => {
   }
   
   const locationData = location.data?.address;
-  const locationName = locationData ? formatLocation(locationData) : 'Weather Now';
+  const locationName = locationData ? formatLocation(locationData) : 'Current Weather';
 
-  if(locationLoading || weatherQuery.isLoading || !weatherQuery.data){
+  if(locationLoading || weatherQuery.isLoading || location.isLoading || !weatherQuery.data){
     return (
       <div className="flex flex-col mx-4 sm:mx-6 xl:mx-28">
         <h1 className="font-bold text-[52px] text-center font-heading leading-[1.2] my-12 mx-2 sm:my-16 sm:mx-32">How’s the sky looking today?</h1>

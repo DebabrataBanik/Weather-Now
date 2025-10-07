@@ -33,7 +33,7 @@ const App = () => {
                     <Route path="city/:city" element={<NewWeatherPage />} />
                   </Routes>
                 </Layout>
-                <Toaster richColors />
+                <Toaster richColors position="top-center" />
             </UnitProvider>
           </ThemeProvider>
         </BrowserRouter>

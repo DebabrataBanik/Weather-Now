@@ -33,7 +33,7 @@ const NewWeatherPage = () => {
     if (hasScrolledRef.current) return;
     if (sectionRef.current && weatherQuery.data) {
       requestAnimationFrame(() => {
-        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
       });
       hasScrolledRef.current = true;
     }

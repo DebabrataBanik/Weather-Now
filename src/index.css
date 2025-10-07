@@ -156,6 +156,10 @@
     @apply bg-background text-foreground font-sans;
   }
 
+  section{
+    scroll-margin-top: 2rem;
+  }
+
   select, ::picker(select){
     appearance: base-select;
     position: relative;
@@ -215,6 +219,8 @@
   @media (min-width: 640px) {
     .card-bg{
       background: url(assets/images/bg-today-large.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 }
