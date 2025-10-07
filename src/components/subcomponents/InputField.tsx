@@ -28,9 +28,7 @@ const InputField = () => {
     );
   }
 
-  console.log(data?.results)
-
-  const showDropdown = query.length > 3 && !selectData && (isLoading || data);
+  const showDropdown = query.length > 2 && !selectData && (isLoading || data);
 
   return (
     <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 lg:mx-auto">
@@ -78,7 +76,7 @@ const InputField = () => {
       <button
         onClick={handleSubmit}  
         disabled={!selectData}
-        className="w-full sm:w-fit bg-card-primary px-6 rounded-xl leading-14 text-xl font-medium cursor-pointer hover:bg-card-secondary transition-all duration-100  disabled:cursor-not-allowed disabled:bg-card-primary">
+        className="w-full sm:w-fit bg-card-primary px-6 rounded-xl leading-14 text-xl font-medium cursor-pointer hover:bg-card-secondary transition-all duration-100 focus:outline-2 focus:outline-offset-2 focus:outline-card-primary disabled:cursor-not-allowed disabled:bg-card-primary">
           Search
       </button>
 

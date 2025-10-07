@@ -31,6 +31,6 @@ export function useSearchLocationQuery(query: string){
   return useQuery({
     queryKey: query ? QueryKeys.searchKeys(query) : ['search'],
     queryFn: () => query ? getSearchLocation(query) : Promise.resolve(null),
-    enabled: query.length > 3
+    enabled: query.length > 2
   })
 }
